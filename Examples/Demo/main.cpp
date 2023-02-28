@@ -5,9 +5,9 @@
  * Author : Gabriel
  */ 
 
-#include "ADC\ADC.h"
-#include "USART\USART.h"
-#include "Time\Time.h"
+#include "ADC/ADC.h"
+#include "USART/USART.h"
+#include "Time/Time.h"
 
 int main(void)
 {

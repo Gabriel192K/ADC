@@ -14,7 +14,8 @@
 class __ADC__
 {
     public:
-        __ADC__();
+        __ADC__(volatile uint16_t* adcr, volatile uint8_t* adcsra,\
+                volatile uint8_t* adcsrb, volatile uint8_t* admux);
         ~__ADC__();
         void     begin        (void);
         void     setPrescaler (uint8_t prescaler);
@@ -25,8 +26,16 @@ class __ADC__
         void     end          (void);
     private:
         uint8_t sampleRate;
+        volatile uint16_t* adcr;
+        volatile uint8_t* adcsra;
+        volatile uint8_t* adcsrb;
+        volatile uint8_t* admux;
 };
 
+#if defined(__AVR_ATmega328P__)
 extern __ADC__ ADC;
+#else
+#error "No ADC implementation"
+#endif
 
 #endif
