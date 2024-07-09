@@ -151,7 +151,7 @@ const uint16_t __ADC__::read(const uint8_t channel)
  * @brief  Reads the bandgap reference voltage of MCU using a specialised ADC channel connected to that
  * @return The bandgap reference voltage of MCU in millivolts
  */
-uint16_t __ADC__::VCC(void)
+const uint16_t __ADC__::VCC(void)
 {
     uint32_t result = 0;
 
@@ -169,13 +169,8 @@ uint16_t __ADC__::VCC(void)
         result += ADC;
         #endif
     }
-
-    result /= this->samples;
-    #if defined (__AVR_ATmega328P__) || \
-        defined (__AVR_ATmega328PB__)
-    result = 1125300L / result; // Divide result by precalculated value */
-    #endif
-    return (result);
+    
+    return (ADC_VCC_CONSTANT / (result / this->samples));
 }
 
 /*!

@@ -11,6 +11,12 @@
 #define ADC_DEFAULT_SAMPLES    (const uint8_t)10
 #define ADC_DEFAULT_REFERENCE  ADC_REFERENCE_AVCC
 #define ADC_DEFAULT_PRESCALER  (const uint8_t)128
+#define ADC_MAX_VALUE          (const uint32_t)1024
+#if defined (__AVR_ATmega328P__) || \
+    defined (__AVR_ATmega328PB__)
+#define ADC_BANDGAP_VOLTAGE    (const uint32_t)1100 // In millivolts
+#endif
+#define ADC_VCC_CONSTANT       (const uint32_t)(ADC_BANDGAP_VOLTAGE * ADC_MAX_VALUE)
 
 class __ADC__
 {
